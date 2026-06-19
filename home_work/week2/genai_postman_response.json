@@ -1,0 +1,399 @@
+{
+  "info": {
+    "_postman_id": "35ba6583-b929-4836-9164-4332878844bb",
+    "name": "GenAI-June-HomeAssignment",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "55893156",
+    "_collection_link": "https://go.postman.co/collection/55893156-35ba6583-b929-4836-9164-4332878844bb?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "S01-Text to Audio",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer $GROQ_API_KEY"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"model\": \"canopylabs/orpheus-v1-english\",\r\n    \"input\": \"[Cheerful] vanakkam. I am a language model created by Groq. I am here to help you with any questions you may have. How can I assist you today?\",\r\n    \"voice\": \"diana\",\r\n    \"response_format\": \"wav\"\r\n  }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.groq.com/openai/v1/audio/speech",
+          "protocol": "https",
+          "host": [
+            "api",
+            "groq",
+            "com"
+          ],
+          "path": [
+            "openai",
+            "v1",
+            "audio",
+            "speech"
+          ]
+        },
+        "description": "Generated from cURL: curl https://api.groq.com/openai/v1/audio/speech \\\r\n  -X POST \\\r\n  -H \"Authorization: Bearer $GROQ_API_KEY\" \\\r\n  -H \"Content-Type: application/json\" \\\r\n  -d '{\r\n    \"model\": \"canopylabs/orpheus-v1-english\",\r\n    \"input\": \"Welcome to Orpheus text-to-speech. [cheerful] This is an example of high-quality English audio generation with vocal directions support.\",\r\n    \"voice\": \"austin\",\r\n    \"response_format\": \"wav\"\r\n  }' \\\r\n  --output orpheus-english.wav\r\n"
+      },
+      "response": []
+    },
+    {
+      "name": "S02- MultiLingual",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"model\": \"llama-3.3-70b-versatile\",\n    \"messages\": [\n        {\n            \"role\": \"system\",\n            \"content\": \"You are an API Specialist. Always respond in the same language as the user.\"\n        },\n        {\n            \"role\": \"user\",\n            \"content\": \"மிகவும் நன்றி! இந்த API-ஐ எப்படி பயன்படுத்துவது என்று சொல்லுங்கள்.\"\n        }\n    ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.groq.com/openai/v1/chat/completions",
+          "protocol": "https",
+          "host": [
+            "api",
+            "groq",
+            "com"
+          ],
+          "path": [
+            "openai",
+            "v1",
+            "chat",
+            "completions"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "S02- MultiLingual",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"model\": \"llama-3.3-70b-versatile\",\n    \"messages\": [\n        {\n            \"role\": \"system\",\n            \"content\": \"You are an API Specialist. Always respond in the same language as the user.\"\n        },\n        {\n            \"role\": \"user\",\n            \"content\": \"Merci beaucoup ! Pourriez-vous m'expliquer comment utiliser cette API ?\"\n        }\n    ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.groq.com/openai/v1/chat/completions",
+              "protocol": "https",
+              "host": [
+                "api",
+                "groq",
+                "com"
+              ],
+              "path": [
+                "openai",
+                "v1",
+                "chat",
+                "completions"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 200
+            },
+            {
+              "key": "date",
+              "value": "Fri, 19 Jun 2026 07:09:48 GMT"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json"
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0, no-store, no-cache, must-revalidate"
+            },
+            {
+              "key": "server",
+              "value": "cloudflare"
+            },
+            {
+              "key": "vary",
+              "value": "Origin"
+            },
+            {
+              "key": "x-groq-region",
+              "value": "bom"
+            },
+            {
+              "key": "x-ratelimit-limit-requests",
+              "value": "1000"
+            },
+            {
+              "key": "x-ratelimit-limit-tokens",
+              "value": "12000"
+            },
+            {
+              "key": "x-ratelimit-remaining-requests",
+              "value": "998"
+            },
+            {
+              "key": "x-ratelimit-remaining-tokens",
+              "value": "11931"
+            },
+            {
+              "key": "x-ratelimit-reset-requests",
+              "value": "2m52.8s"
+            },
+            {
+              "key": "x-ratelimit-reset-tokens",
+              "value": "345ms"
+            },
+            {
+              "key": "x-request-id",
+              "value": "req_01kvfbdqmdef5vczcyqf3j24ch"
+            },
+            {
+              "key": "via",
+              "value": "1.1 google"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15552000"
+            },
+            {
+              "key": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "key": "content-encoding",
+              "value": "br"
+            },
+            {
+              "key": "cf-ray",
+              "value": "a0e0b5d09cdc7fd1-MAA"
+            },
+            {
+              "key": "alt-svc",
+              "value": "h3=\":443\"; ma=86400"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"id\": \"chatcmpl-aef91300-beb3-498b-bbdb-3c1bb1b0e8b3\",\n    \"object\": \"chat.completion\",\n    \"created\": 1781852988,\n    \"model\": \"llama-3.3-70b-versatile\",\n    \"choices\": [\n        {\n            \"index\": 0,\n            \"message\": {\n                \"role\": \"assistant\",\n                \"content\": \"Bien sûr ! Je serais ravi de vous aider à comprendre comment utiliser cette API.\\n\\nTout d'abord, pourriez-vous me donner plus de détails sur l'API en question ? Quelle est son objectif, et quels sont les endpoints et les méthodes de requête disponibles ? Cela m'aiderait à vous fournir des explications plus précises et ciblées.\\n\\nEn général, pour utiliser une API, vous aurez besoin de :\\n\\n1. **Authentifier vos requêtes** : cela peut se faire à l'aide d'un token d'accès, d'une clé API ou d'un nom d'utilisateur et d'un mot de passe.\\n2. **Choisir la méthode de requête** : les méthodes les plus courantes sont GET, POST, PUT et DELETE.\\n3. **Définir les paramètres de requête** : cela peut inclure des paramètres dans l'URL, des en-têtes ou un corps de requête.\\n4. **Analyser la réponse** : la réponse de l'API sera généralement au format JSON ou XML, et vous devrez la parser pour en extraire les informations utiles.\\n\\nSi vous me donnez plus de détails sur l'API, je pourrai vous fournir des exemples de code et des conseils plus spécifiques pour vous aider à démarrer.\\n\\nQu'est-ce que vous pensez de commencer par partager les informations dont vous disposez sur l'API ? Je suis à votre écoute !\"\n            },\n            \"logprobs\": null,\n            \"finish_reason\": \"stop\"\n        }\n    ],\n    \"usage\": {\n        \"queue_time\": 0.049587807,\n        \"prompt_tokens\": 68,\n        \"prompt_time\": 0.003492083,\n        \"completion_tokens\": 321,\n        \"completion_time\": 1.131243524,\n        \"total_tokens\": 389,\n        \"total_time\": 1.134735607\n    },\n    \"usage_breakdown\": null,\n    \"system_fingerprint\": \"fp_dae98b5ecb\",\n    \"x_groq\": {\n        \"id\": \"req_01kvfbdqmdef5vczcyqf3j24ch\",\n        \"seed\": 505021526\n    },\n    \"service_tier\": \"on_demand\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "S03-GenerateAPITestcasesFromSwaggerCode",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"model\": \"openai/gpt-oss-120b\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are a Senior API Test Automation Architect with strong expertise in Java, Rest Assured, TestNG, Maven, and API schema-driven test generation.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"I — INSTRUCTION\\nGenerate Rest Assured Java code for Swagger Petstore APIs.\\n\\nMANDATORY RULES:\\n1) Generate ONLY Java Rest Assured code.\\n2) Do NOT include explanations, markdown, or extra text.\\n3) Use TestNG as the test runner.\\n4) Use meaningful class, method, and variable names.\\n5) Include imports required for Rest Assured, TestNG, and assertions.\\n6) Use reusable base URI setup.\\n7) Cover CRUD operations for Pet resource.\\n8) Add assertions for status code and important response fields.\\n9) Keep the code clean, executable, and production-style.\\n10) Do NOT use placeholder comments.\\n\\nC — CONTEXT\\nThe code will be used by QA engineers for API automation practice using Swagger Petstore.\\n\\nP — PERSONA\\nYou are a Senior API Test Automation Architect creating enterprise-style reusable Rest Assured automation code.\\n\\nO — OUTPUT\\nReturn ONLY executable Java code with:\\n- One test class\\n- @BeforeClass setup\\n- Test methods for createPet, getPetById, updatePet, deletePet\\n- Request body creation\\n- Response validation\\n\\nRules:\\n- No markdown fences\\n- No explanation text\\n- No assumptions outside Swagger Petstore Pet API\\n- Use business-readable method names\\n\\nTARGET API:\\nSwagger Petstore\\nResource: Pet\\nOperations required:\\n- Add a new pet\\n- Find pet by ID\\n- Update an existing pet\\n- Delete a pet\"\n    }\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.groq.com/openai/v1/chat/completions",
+          "protocol": "https",
+          "host": [
+            "api",
+            "groq",
+            "com"
+          ],
+          "path": [
+            "openai",
+            "v1",
+            "chat",
+            "completions"
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "S03-GenerateAPITestcasesFromSwaggerCode",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"model\": \"openai/gpt-oss-120b\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are a Senior API Test Automation Architect with strong expertise in Java, Rest Assured, TestNG, Maven, and API schema-driven test generation.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"I — INSTRUCTION\\nGenerate Rest Assured Java code for Swagger Petstore APIs.\\n\\nMANDATORY RULES:\\n1) Generate ONLY Java Rest Assured code.\\n2) Do NOT include explanations, markdown, or extra text.\\n3) Use TestNG as the test runner.\\n4) Use meaningful class, method, and variable names.\\n5) Include imports required for Rest Assured, TestNG, and assertions.\\n6) Use reusable base URI setup.\\n7) Cover CRUD operations for Pet resource.\\n8) Add assertions for status code and important response fields.\\n9) Keep the code clean, executable, and production-style.\\n10) Do NOT use placeholder comments.\\n\\nC — CONTEXT\\nThe code will be used by QA engineers for API automation practice using Swagger Petstore.\\n\\nP — PERSONA\\nYou are a Senior API Test Automation Architect creating enterprise-style reusable Rest Assured automation code.\\n\\nO — OUTPUT\\nReturn ONLY executable Java code with:\\n- One test class\\n- @BeforeClass setup\\n- Test methods for createPet, getPetById, updatePet, deletePet\\n- Request body creation\\n- Response validation\\n\\nRules:\\n- No markdown fences\\n- No explanation text\\n- No assumptions outside Swagger Petstore Pet API\\n- Use business-readable method names\\n\\nTARGET API:\\nSwagger Petstore\\nResource: Pet\\nOperations required:\\n- Add a new pet\\n- Find pet by ID\\n- Update an existing pet\\n- Delete a pet\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.groq.com/openai/v1/chat/completions",
+              "protocol": "https",
+              "host": [
+                "api",
+                "groq",
+                "com"
+              ],
+              "path": [
+                "openai",
+                "v1",
+                "chat",
+                "completions"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": ":status",
+              "value": 200
+            },
+            {
+              "key": "date",
+              "value": "Fri, 19 Jun 2026 07:10:15 GMT"
+            },
+            {
+              "key": "content-type",
+              "value": "application/json"
+            },
+            {
+              "key": "cache-control",
+              "value": "private, max-age=0, no-store, no-cache, must-revalidate"
+            },
+            {
+              "key": "server",
+              "value": "cloudflare"
+            },
+            {
+              "key": "vary",
+              "value": "Origin"
+            },
+            {
+              "key": "x-groq-region",
+              "value": "bom"
+            },
+            {
+              "key": "x-ratelimit-limit-requests",
+              "value": "1000"
+            },
+            {
+              "key": "x-ratelimit-limit-tokens",
+              "value": "8000"
+            },
+            {
+              "key": "x-ratelimit-remaining-requests",
+              "value": "999"
+            },
+            {
+              "key": "x-ratelimit-remaining-tokens",
+              "value": "7603"
+            },
+            {
+              "key": "x-ratelimit-reset-requests",
+              "value": "1m26.4s"
+            },
+            {
+              "key": "x-ratelimit-reset-tokens",
+              "value": "2.977s"
+            },
+            {
+              "key": "x-request-id",
+              "value": "req_01kvfbegrwejz939txmvy5zvec"
+            },
+            {
+              "key": "via",
+              "value": "1.1 google"
+            },
+            {
+              "key": "strict-transport-security",
+              "value": "max-age=15552000"
+            },
+            {
+              "key": "cf-cache-status",
+              "value": "DYNAMIC"
+            },
+            {
+              "key": "content-encoding",
+              "value": "br"
+            },
+            {
+              "key": "cf-ray",
+              "value": "a0e0b6717e707fd1-MAA"
+            },
+            {
+              "key": "alt-svc",
+              "value": "h3=\":443\"; ma=86400"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"id\": \"chatcmpl-a62c5748-af06-4b20-99be-24d6d6e1c914\",\n    \"object\": \"chat.completion\",\n    \"created\": 1781853015,\n    \"model\": \"openai/gpt-oss-120b\",\n    \"choices\": [\n        {\n            \"index\": 0,\n            \"message\": {\n                \"role\": \"assistant\",\n                \"content\": \"import io.restassured.RestAssured;\\nimport io.restassured.http.ContentType;\\nimport org.testng.annotations.BeforeClass;\\nimport org.testng.annotations.Test;\\nimport static io.restassured.RestAssured.given;\\nimport static org.hamcrest.Matchers.*;\\n\\npublic class PetStoreCrudTests {\\n\\n    private static final long PET_ID = System.currentTimeMillis();\\n\\n    private static final String NEW_PET_JSON = String.format(\\n            \\\"{\\\" +\\n            \\\"\\\\\\\"id\\\\\\\": %d,\\\" +\\n            \\\"\\\\\\\"category\\\\\\\": {\\\\\\\"id\\\\\\\": 0, \\\\\\\"name\\\\\\\": \\\\\\\"string\\\\\\\"},\\\" +\\n            \\\"\\\\\\\"name\\\\\\\": \\\\\\\"Rex\\\\\\\",\\\" +\\n            \\\"\\\\\\\"photoUrls\\\\\\\": [\\\\\\\"string\\\\\\\"],\\\" +\\n            \\\"\\\\\\\"tags\\\\\\\": [{\\\\\\\"id\\\\\\\": 0, \\\\\\\"name\\\\\\\": \\\\\\\"string\\\\\\\"}],\\\" +\\n            \\\"\\\\\\\"status\\\\\\\": \\\\\\\"available\\\\\\\"\\\" +\\n            \\\"}\\\", PET_ID);\\n\\n    private static final String UPDATED_PET_JSON = String.format(\\n            \\\"{\\\" +\\n            \\\"\\\\\\\"id\\\\\\\": %d,\\\" +\\n            \\\"\\\\\\\"category\\\\\\\": {\\\\\\\"id\\\\\\\": 0, \\\\\\\"name\\\\\\\": \\\\\\\"string\\\\\\\"},\\\" +\\n            \\\"\\\\\\\"name\\\\\\\": \\\\\\\"Max\\\\\\\",\\\" +\\n            \\\"\\\\\\\"photoUrls\\\\\\\": [\\\\\\\"string\\\\\\\"],\\\" +\\n            \\\"\\\\\\\"tags\\\\\\\": [{\\\\\\\"id\\\\\\\": 0, \\\\\\\"name\\\\\\\": \\\\\\\"string\\\\\\\"}],\\\" +\\n            \\\"\\\\\\\"status\\\\\\\": \\\\\\\"sold\\\\\\\"\\\" +\\n            \\\"}\\\", PET_ID);\\n\\n    @BeforeClass\\n    public void setup() {\\n        RestAssured.baseURI = \\\"https://petstore.swagger.io/v2\\\";\\n    }\\n\\n    @Test(priority = 1)\\n    public void createPet() {\\n        given()\\n            .contentType(ContentType.JSON)\\n            .body(NEW_PET_JSON)\\n        .when()\\n            .post(\\\"/pet\\\")\\n        .then()\\n            .statusCode(200)\\n            .body(\\\"id\\\", equalTo((int) PET_ID))\\n            .body(\\\"name\\\", equalTo(\\\"Rex\\\"))\\n            .body(\\\"status\\\", equalTo(\\\"available\\\"));\\n    }\\n\\n    @Test(priority = 2, dependsOnMethods = \\\"createPet\\\")\\n    public void getPetById() {\\n        given()\\n            .pathParam(\\\"petId\\\", PET_ID)\\n        .when()\\n            .get(\\\"/pet/{petId}\\\")\\n        .then()\\n            .statusCode(200)\\n            .body(\\\"id\\\", equalTo((int) PET_ID))\\n            .body(\\\"name\\\", equalTo(\\\"Rex\\\"))\\n            .body(\\\"status\\\", equalTo(\\\"available\\\"));\\n    }\\n\\n    @Test(priority = 3, dependsOnMethods = \\\"getPetById\\\")\\n    public void updatePet() {\\n        given()\\n            .contentType(ContentType.JSON)\\n            .body(UPDATED_PET_JSON)\\n        .when()\\n            .put(\\\"/pet\\\")\\n        .then()\\n            .statusCode(200)\\n            .body(\\\"id\\\", equalTo((int) PET_ID))\\n            .body(\\\"name\\\", equalTo(\\\"Max\\\"))\\n            .body(\\\"status\\\", equalTo(\\\"sold\\\"));\\n    }\\n\\n    @Test(priority = 4, dependsOnMethods = \\\"updatePet\\\")\\n    public void deletePet() {\\n        given()\\n            .pathParam(\\\"petId\\\", PET_ID)\\n        .when()\\n            .delete(\\\"/pet/{petId}\\\")\\n        .then()\\n            .statusCode(200)\\n            .body(\\\"message\\\", equalTo(String.valueOf(PET_ID)));\\n    }\\n}\",\n                \"reasoning\": \"We need to output Java code only, no markdown fences, no extra text. Must include imports, class, beforeclass, test methods.\\n\\nUse RestAssured, TestNG. Set base URI. Use reusable request spec perhaps. Need to create request bodies (JSON). Use assertions for status code and important response fields.\\n\\nSwagger Petstore pet API details: Typically base URL: https://petstore.swagger.io/v2. Endpoints: POST /pet, GET /pet/{petId}, PUT /pet, DELETE /pet/{petId}. Request body includes id, category, name, photoUrls, tags, status. We'll create a pet with random id (maybe using java.util.UUID or a static long). For test reproducibility, maybe use static long petId = System.currentTimeMillis();.\\n\\nAdd test methods: createPet, getPetById, updatePet, deletePet.\\n\\nUse TestNG @Test with priority to ensure order. Or use dependsOnMethods.\\n\\nWill include assertions: statusCode, name, status.\\n\\nWe'll need import static io.restassured.RestAssured.*; import io.restassured.RestAssured; import io.restassured.http.ContentType; import org.testng.annotations.*; import static org.hamcrest.Matchers.*;\\n\\nWill set baseURI in @BeforeClass: RestAssured.baseURI = \\\"https://petstore.swagger.io/v2\\\";\\n\\nWill use a static long petId.\\n\\nWill build JSON using a Map or a POJO? Simpler: use a String with formatted JSON.\\n\\nAdd reusable request spec? Not required but we can set basePath.\\n\\nLet's craft code.\\n\\nWe must not include placeholder comments, but we can include meaningful variable names. No extra text.\\n\\nProceed.\"\n            },\n            \"logprobs\": null,\n            \"finish_reason\": \"stop\"\n        }\n    ],\n    \"usage\": {\n        \"queue_time\": 0.313558344,\n        \"prompt_tokens\": 396,\n        \"prompt_time\": 0.019894886,\n        \"completion_tokens\": 1028,\n        \"completion_time\": 2.156408729,\n        \"total_tokens\": 1424,\n        \"total_time\": 2.176303615,\n        \"completion_tokens_details\": {\n            \"reasoning_tokens\": 344\n        }\n    },\n    \"usage_breakdown\": null,\n    \"system_fingerprint\": \"fp_068241849b\",\n    \"x_groq\": {\n        \"id\": \"req_01kvfbegrwejz939txmvy5zvec\",\n        \"seed\": 998880105\n    },\n    \"service_tier\": \"on_demand\"\n}"
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{groq_api_key_14os}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUri",
+      "value": ""
+    },
+    {
+      "key": "groq_api_key_14os",
+      "secret": true
+    }
+  ]
+}
