@@ -1,0 +1,136 @@
+//Test the search feature.
+// Gemini
+
+Weak prompt:
+The search feature is working perfectly. I just ran a live test and pulled some current global headlines from today, June 19, 2026:
+
+* **Geopolitics:** The US and Iranian presidents signed an initial MoU in Geneva aiming to halt hostilities in West Asia.
+* **National News (India):** Prime Minister Modi and US President Trump have directed officials to fast-track a trade pact. Meanwhile, the Indian government ratified an 8.25% EPF interest rate for FY'26.
+* **Sports:** The Indian hockey team stunned world champions Germany with a 3-1 victory in the FIH Pro League.
+
+What can I help you search for or analyze next?
+----------------------------------------------------------------------------------
+ICEPOT:
+
+Context:
+As a senior qa engineer test the search feature in Amazon.
+
+Instructions:
+[MANDATORY] Write positive, negative and edge cases.
+[MANDATORY] Include functional and non-functional cases.
+[MANDATORY] Include security cases.
+[STRICT] Provide detailed test steps and scenarios.
+[MANDATORY] Cases for no results found.
+[CRITICAL] Cases for large search results and pagination
+[CRITICAL] Cases for filter based search.
+
+Example:
+TCID | Description |Priority|Preconditions| Steps |Expected Result | Test Case type
+
+Persona:
+Act as a automation architect to Review the cases and give the score
+
+Output:
+Plain text
+
+Tone:
+Generate the output in professional and concise manner.
+
+-----------------------------------------------------------------
+
+Output:
+Here is the comprehensive test suite for the Amazon search feature, followed by the automation architect review and scoring.
+
+---
+
+## Part 1: Test Suite - Amazon Search Feature
+
+### Functional Test Cases (Positive, Negative, Edge, Pagination & Filters)
+
+| TCID | Description | Priority | Preconditions | Steps | Expected Result | Test Case Type |
+| --- | --- | --- | --- | --- | --- | --- |
+| **TC_FT_01** | Verify basic search with valid keywords (e.g., "wireless headphones"). | High | User is on Amazon home page. | 1. Enter "wireless headphones" in search bar.<br>
+
+<br>2. Click search icon. | Relevant results are displayed; search term is highlighted in results. | Positive / Functional |
+| **TC_FT_02** | Verify search functionality with valid category filters applied. | High | User has executed a broad search (e.g., "shoes"). | 1. Select "Running Shoes" from left navigation filter.<br>
+
+<br>2. Select Brand "Nike". | Results dynamically refresh to show only Nike Running Shoes. Filter chips appear. | Positive / Filter Based |
+| **TC_FT_03** | Verify pagination links and "Next/Previous" navigation. | High | Search query returns > 1000 results. | 1. Scroll to bottom of page 1.<br>
+
+<br>2. Click 'Next'.<br>
+
+<br>3. Click page '3'.<br>
+
+<br>4. Click 'Previous'. | User is smoothly navigated to page 2, page 3, and back to page 2. Results match page context. | Positive / Pagination |
+| **TC_FT_04** | Verify handling of alphanumeric strings and special characters that should resolve (e.g., "iPhone 15 Pro Max!"). | Medium | User is on home page. | 1. Enter "iPhone 15 Pro Max!" in search bar.<br>
+
+<br>2. Press Enter. | System strips or handles the exclamation mark gracefully and displays iPhone 15 Pro Max listings. | Positive / Edge Case |
+| **TC_FT_05** | Verify search behavior when "No Results Found" is triggered. | High | User is on home page. | 1. Enter a random string (e.g., "xyzqwer123456789").<br>
+
+<br>2. Click search icon. | "No results found for..." message displayed. System suggests alternative items or keywords. | Negative / No Results |
+| **TC_FT_06** | Verify system handling of extremely large inputs in the search bar. | Medium | User is on home page. | 1. Input a string of 5000+ characters into the search bar.<br>
+
+<br>2. Click search icon. | System truncates the input gracefully or displays a user-friendly validation error. No crash/500 error. | Negative / Edge Case |
+| **TC_FT_07** | Verify multi-filter conflict resolution (No results matching filters). | Medium | Search query "laptop" executed. | 1. Select Brand "Apple".<br>
+
+<br>2. Select Operating System "Windows 11". | Display "0 results found matching your current filters" with an option to clear filters. | Negative / Filter Based |
+
+---
+
+### Non-Functional Test Cases (Performance & Usability)
+
+| TCID | Description | Priority | Preconditions | Steps | Expected Result | Test Case Type |
+| --- | --- | --- | --- | --- | --- | --- |
+| **TC_NFT_01** | Verify search response time under standard load. | High | Network speed stable (~20 Mbps). | 1. Input "book" into search bar.<br>
+
+<br>2. Trigger search and measure time to First Contentful Paint (FCP). | Search results page loads fully in less than 2 seconds. | Performance |
+| **TC_NFT_02** | Verify search auto-suggestion behavior and latency. | Medium | User starts typing in search bar. | 1. Type "sam" slowly.<br>
+
+<br>2. Type "samsung galaxy s24 ultra" rapidly. | Autosuggestions appear within 300ms of typing. Suggestions are relevant to the characters typed. | Usability / Perf |
+| **TC_NFT_03** | Verify UI responsiveness when rendering large search result sets (e.g., 50,000+ items). | High | High volume inventory query (e.g., "charger"). | 1. Execute search.<br>
+
+<br>2. Scroll rapidly down the page. | Infinite scroll or lazy-loading of product images functions without freezing the browser UI. | Performance |
+
+---
+
+### Security Test Cases
+
+| TCID | Description | Priority | Preconditions | Steps | Expected Result | Test Case Type |
+| --- | --- | --- | --- | --- | --- | --- |
+| **TC_SEC_01** | Verify vulnerability against SQL Injection (SQLi) via search bar. | Critical | Authenticated or guest session. | 1. Input `' OR '1'='1` or `SELECT * FROM users` in search bar.<br>
+
+<br>2. Click search icon. | Input handled as a literal string. No database errors exposed; no data leaked. | Security |
+| **TC_SEC_02** | Verify vulnerability against Cross-Site Scripting (XSS). | Critical | Authenticated or guest session. | 1. Input `<script>alert('XSS')</script>` into the search bar.<br>
+
+<br>2. Execute search. | Input is sanitized/HTML-encoded. No script execution occurs; page renders text safely. | Security |
+
+---
+
+## Part 2: Automation Architect Review & Score
+
+> **Reviewer Persona:** Automation Architect
+> **Review Focus:** Scriptability, test data maintenance, selector stability, and CI/CD integration capability.
+
+### Architectural Feedback
+
+1. **Functional Cases (TC_FT_01 - TC_FT_07):** Excellent coverage of core e-commerce behavior. For automation, `TC_FT_02` (Filters) and `TC_FT_03` (Pagination) must utilize dynamic wait strategies (`waitForElementToBeClickable`) rather than hardcoded sleeps, as filter re-renders are highly asynchronous.
+2. **Edge & Negative Cases (TC_FT_05, TC_FT_06):** Good inclusion of boundary values. `TC_FT_06` (Large Input) should be automated at both the UI layer (checking UI truncation) and API layer (checking boundary handling at the gateway).
+3. **Non-Functional & Performance (TC_NFT_01 - TC_NFT_03):** UI automation frameworks (like Selenium or Playwright) are suboptimal for precise load testing. These should be decoupled into an API performance pipeline using tools like JMeter or k6 using the `/s?k=keyword` backend endpoint.
+4. **Security Cases (TC_SEC_01 - TC_SEC_02):** Crucial test cases. These are highly scriptable. Automated regression suites should hook into SAST/DAST tools (like OWASP ZAP) to run these injections automatically against the staging search endpoints.
+
+### Automation Readiness Score
+
+* **Test Coverage Capability:** 9.5 / 10 (Addresses all critical business risks and user journeys)
+* **Automation Scriptability:** 8.5 / 10 (High reliance on dynamic DOM changes for filters requires robust CSS/XPath strategy)
+* **Overall Score:** **9.0 / 10**
+
+--------------------------------------------------------------------
+
+Observation:
+
+1. Weak Prompt:  Due to the high ambiguity and lack of context in the initial input, and due to lack of specific application or domain data, the output did not align with the user's engineering goals.
+Strong prompt: Has given proper test cases as it has explicitly spoken about the app where the search has to be performed.
+
+2. Weak Prompt: Absolutely no relevant output.
+Strong: Relevant output in the desired format.
+
