@@ -1,0 +1,138 @@
+//Scenario 2: Generate test cases for file upload.
+
+Weak Prompt:
+Here is a comprehensive set of test cases for a **File Upload** feature, organized by category to ensure maximum coverage.
+
+---
+
+## 1. Functional Test Cases (Happy Path)
+
+These test cases verify that the feature works as expected under normal conditions.
+
+* **Successful Upload:** Verify that a user can successfully upload a valid file format (e.g., `.pdf`, `.jpg`, `.png`) within the allowed size limit.
+* **File Selection via Browse:** Verify that clicking the "Browse" or "Upload" button opens the local file explorer and allows file selection.
+* **Drag and Drop:** Verify that dropping a valid file directly into the designated drop zone successfully uploads it.
+* **File Name Display:** Verify that the correct file name and extension are displayed on the UI after selection but before hitting "Submit".
+* **Progress Bar:** Verify that a progress bar or loading spinner appears during the upload process and reaches 100% upon completion.
+* **Success Message:** Verify that a clear success notification (e.g., "File uploaded successfully!") is displayed post-upload.
+
+---
+
+## 2. Boundary & Validation Test Cases (Negative Path)
+
+These test cases ensure the system gracefully handles invalid inputs and enforces restrictions.
+
+### File Size Restrictions
+
+* **Maximum Limit:** Attempt to upload a file that is exactly at the maximum allowed limit (e.g., 5MB) $\rightarrow$ *Should succeed.*
+* **Exceeding Maximum Limit:** Attempt to upload a file that exceeds the maximum limit (e.g., 5.1MB) $\rightarrow$ *Should fail with an appropriate error message.*
+* **Zero-Byte File:** Attempt to upload an empty/0-KB file $\rightarrow$ *Should fail or show a validation error.*
+
+### File Type & Extension Restrictions
+
+* **Unsupported Formats:** Attempt to upload an invalid file extension (e.g., uploading an `.exe` or `.mp3` when only images are allowed) $\rightarrow$ *Should be blocked with an error message.*
+* **MIME Type Spoofing:** Change the extension of a malicious executable from `.exe` to `.png` and attempt to upload $\rightarrow$ *The system backend should detect the true MIME type and reject it.*
+* **No Extension:** Attempt to upload a file that has no extension (e.g., just `filename`) $\rightarrow$ *Should be rejected if it doesn't match allowed types.*
+
+---
+
+## 3. UI, UX, & Edge Cases
+
+These test cases check the user experience and unusual user behaviors.
+
+* **Special Characters in Filename:** Upload a file with spaces or special characters in its name (e.g., `my_photo!@#$.png`) $\rightarrow$ *Should either upload successfully or safely sanitize the filename.*
+* **Duplicate File Upload:** Upload a file with the exact same name as a previously uploaded file $\rightarrow$ *The system should either overwrite it, append a number (e.g., `file(1).png`), or prompt the user.*
+* **Cancel Upload:** Verify that the user can cancel an in-progress file upload, and that the system halts the transfer immediately.
+* **Multiple File Uploads:** If the system supports multi-upload, select and upload multiple files simultaneously $\rightarrow$ *Verify all upload correctly or fail gracefully if the maximum count is exceeded.*
+* **File Preview:** For image uploads, verify that a thumbnail preview of the image is rendered correctly after upload.
+
+---
+
+## 4. Security & Performance Test Cases
+
+Critical checks to ensure the application remains secure and responsive.
+
+| Test Case Objective | Expected Behavior |
+| --- | --- |
+| **Malware/Virus Scanning** | Upload a file containing a known virus or malware string. The system's antivirus layer should block and quarantine it. |
+| **Large File Performance** | Monitor system memory and CPU utilization while uploading a file at the maximum allowed size limit to ensure no memory leaks occur. |
+| **Network Interruption** | Disconnect the internet connection midway through a large file upload. The system should pause gracefully, show a network error, or resume if supported. |
+| **XSS Injection via Filename** | Name a file `<script>alert('XSS')</script>.jpg` and upload it. The UI must render the text safely without executing the JavaScript. |
+
+--------------------------------------------------
+ICEPOT
+
+Context
+Act as a Lead QA engineer to generate detailed test cases covering all possible scenarios for file upload in google drive.
+
+Instructions
+
+[MANDATORY] Write positive, negative and edge cases.
+[MANDATORY] Include functional and non-functional cases.
+[MANDATORY] Include security cases.
+[STRICT] Provide detailed test steps and scenarios
+[MANDATORY] Write file size validation test cases for multiple file types, maximum upload limit is 20 MB.
+[CRITICAL] Include cases for file upload failure when the drive is full
+[CRITICAL] Include cases to cover both web and mobile devices.
+[CRITICAL] Add cases for multi file upload
+[CRITICAL] Add Cases to test the upload limit (e.g., up to 5 TB depending on the file type) to ensure it handles massive files without timing out
+[CRITICAL]  Add Cases for files with different extensions
+[HIGHPRIORITY] Include cases for file uploads  via Drag and Drop, the "+ New" button, and folder uploads.
+[HIGHPRIORITY] Cases to check if the file is duplicate
+[HIGHPRIORITY] Cover cases uploading files directly into a Shared Drive, checking whether the contributor/editor roles dictate the success of the upload.
+[LOWPRIORITY] Add cases for file overwriting
+[LOWPRIORITY] Cover cases to check if the uploaded file is sharable.
+
+Example:
+TCID | Description |Priority|Preconditions| Steps |Expected Result | Test Case type
+
+Persona:
+Act as a automation architect to Review the cases and give the score
+
+Output:
+Downloadable excel
+
+Tone:
+Generate the output in professional and concise manner.
+
+-------------------------------------------------------------------------------
+
+Output:
+Your professional-grade testing suite spreadsheet is ready.
+
+Google_Drive_File_Upload_Test_Suite
+ XLSX
+Open
+
+Test Suite Blueprint Summary
+The spreadsheet has been engineered with two foundational sheets following strict enterprise QA standards:
+
+1. Review & Scoring Dashboard
+Persona Evaluation: Evaluated from the perspective of an Automation Architect, assigning a structural testability and strategy score across five coverage vectors.
+
+Composite Readiness Score: 9.3 / 10 (Highly Automatable). Core UI triggers (+ New, drag-and-drop, overlays) utilize highly deterministic DOM objects. The dashboard recommends executing massive chunking tests (>20MB boundaries up to the backend's 5TB ceiling) via API service layer contracts to minimize test framework timeouts.
+
+2. Test Case Master Registry
+Every constraint outlined in your specification has been mapped out into fully descriptive test rows with a standard row layout (TCID | Description | Priority | Preconditions | Steps | Expected Result | Test Case Type | Platform). The suite structurally categorizes the following dimensions:
+
+Core UI Interactions (High Priority): Step-by-step logic detailing standard Web entry points (via + New button), native system integrations (Drag & Drop), and recursive multi-level directory/folder structures.
+
+Boundary & Volumetric Controls (Critical): Validations covering the standard user interface thresholds (<20MB), multi-file concurrency batching limits (50 concurrent files), up to infrastructure-level performance ceilings (5TB data streams handled via chunked service worker persistence layers).
+
+Fail-Safe Operations (Critical): Validation testing storage-full errors when account storage caps are dynamically hit (e.g., 14.99GB of 15GB utilized).
+
+Security & Multi-Platform (Security/High Priority): Explicit scripts checking for structural MIME-spoofing overrides (renaming .exe binaries to .png), persistent file name XSS reflection protection, and enterprise Access Control lists (Shared Drive contributor vs. viewer restrictions).
+
+Asset Lifecycle Management (Low Priority): Clean verification paths outlining auto-versioning, system file renaming collisions (File (1).ext), and immediate validation of asset sharing operations.
+-----------------------------------------------------------------------
+
+Observations:
+
+1.Weak Prompt: Focused on standard file extension checks (e.g., blocking an .exe file extension).
+Strong prompt: Addressed advanced cybersecurity risks.(eg: MIME-Type Spoofing, Persistent XSS Injection, Role-Based Access Controls (RBAC))
+
+2.Weak Prompt: Suggested checking what happens if a file is a duplicate
+Strong prompt: Scripted exact data collision behaviors. It compared Auto-Versioning (where Drive stacks a duplicate as "Version 2" to preserve original sharing links) against Namespace Splitting.
+
+3. Weak Prompt: Completely overlooked backend system states
+Strong Prompt: ntroduced specific negative test cases for Quota Exhaustion. It validated the exact system behaviors and warning toasts ("Storage full. Upgrade storage.") triggered when a file size exceeds the target account's remaining cloud allocation.
