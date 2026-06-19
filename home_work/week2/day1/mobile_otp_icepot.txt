@@ -1,0 +1,85 @@
+Weak prompt: Test OTP login on mobile.
+Testing an OTP (One-Time Password) login flow on a mobile application or website requires a structured approach to ensure both security and a smooth user experience.
+
+Here is a comprehensive checklist of the critical test cases you should run, broken down by scenario:
+
+---
+
+### 1. Happy Path (The Ideal Flow)
+
+* **Successful Delivery:** Verify the OTP arrives via the requested channel (SMS, Email, or WhatsApp) within the expected timeframe (usually under 30 seconds).
+* **Correct Redirection:** Ensure that entering the valid OTP successfully logs the user in and routes them to the correct landing page or dashboard.
+* **Auto-Read/Auto-Fill:** If the mobile app supports it, verify that the OS prompts the user to auto-fill the OTP directly from the incoming SMS.
+
+### 2. Validation & Edge Cases
+
+* **Incorrect OTP:** Enter an invalid or typo-ridden OTP. Verify that a clear error message appears and the user remains on the verification screen.
+* **Expired OTP:** Wait for the OTP expiration time to lapse (e.g., 2 or 5 minutes) and attempt to submit it. It should be rejected as expired.
+* **Alphanumeric vs. Numeric:** If your OTP system only uses numbers, try typing letters or special characters to ensure the input field restricts them or throws a validation error.
+* **Incomplete OTP:** Try submitting only 3 digits of a 4-digit or 6-digit OTP to ensure the "Submit" button is either disabled or triggers an "Incomplete code" error.
+
+### 3. Resend & Rate Limiting (Security)
+
+* **Resend Timer:** Verify that a visual countdown timer prevents the user from clicking "Resend OTP" immediately. The button should only become active after the timer hits zero.
+* **Brute-Force Protection:** Attempt to enter incorrect OTPs multiple times in a row. The system should lock the user out or require a completely new OTP after a set number of failed attempts (usually 3 to 5).
+* **Request Throttling:** Rapidly request multiple OTPs to verify that the backend limits the number of SMS messages a single phone number or IP address can request within an hour to prevent high SMS gateway costs and spamming.
+
+### 4. Technical & Network Interruption
+
+* **Network Switching:** Request an OTP on Wi-Fi, then quickly turn off Wi-Fi to force the mobile device onto cellular data before entering the code. The session should not break.
+* **App In the Background:** Minimize the app to check your text messages for the code, then reopen the app. Ensure the app didn't restart or wipe out the phone number you previously entered.
+* **Interrupted State:** Lock the device or take a phone call while on the OTP screen, then unlock/return to the app to ensure the state is preserved.
+
+---
+
+> **Testing Tip:** When testing in a staging or QA environment, work with your backend developers to set up a **"White-listed / Mock OTP"** (e.g., entering `123456` always works for specific test phone numbers). This saves money on SMS gateway charges and keeps your automated test suites running smoothly without relying on physical SIM cards.
+
+
+
+ICEPOT Framework:
+
+Context: As a Lead QA write detailed test cases to Test OTP login on mobile.
+
+Instructions:
+[MANDATORY] Write positive, negative and edge cases.
+[MANDATORY] Include functional and non-functional cases.
+[MANDATORY] Include security cases.
+[STRICT] Provide detailed test steps and scenarios
+[MANDATORY] Add cases for various devices and various OS.
+[STRICT] OTP expiry time should be only 60 secs.
+[CRITICAL] Add cases to cover resend and rate limiting scenairios.
+[CRITICAL] Add cases for techicnal and network interruption
+[STRICT] OTP must contain only numbers and should not be more than 6 digits.
+
+Example:
+TCID | Description |Priority|Preconditions| Steps |Expected Result | Test Case type
+
+Persona:
+Act as a automation architect to Review the cases and give the score
+
+Output:
+Downloadable excel
+
+Tone:
+Generate the output in professional and concise manner.
+:
+
+Output:
+Your Excel workbook is ready for download:
+
+Mobile_OTP_Master_Test_Suite
+ XLSX
+Open
+
+🛠️ Summary of the Spreadsheet Test StrategyThe spreadsheet is fully formatted utilizing standard corporate typography hierarchy, color codes for priorities (Critical, High in bold crimson text), and custom cell configurations. It is segmented into the following key testing vectors:Happy Path (Functional & Positive): Evaluates flawless numeric OTP delivery, OS-level text content extraction (one-time-code autofill matching on iOS QuickType and Android system APIs), and authentication redirects.Negative Boundary Validation: Checks system resilience to alphanumeric injection attempts, structural truncation errors, and strict rejection of expired codes at exactly $t > 60\text{ seconds}$.Enterprise Security & Anti-Spam: Ensures defensive measures are active against SMS gateway flooding (hourly limits per phone number/IP address) and brute-force cracking attempts.Mobile Technical Interruption: Validates application state lifecycle management when the background application is temporarily paused to review messaging folders or during incoming telephony interrupts.Cross-OS Compatibility Matrix: Comprehensive verification across modern software versions (Android 12 through Android 16 previews, and iOS 16 through iOS 19).
+
+Observations:
+1.Weak prompts: Only covers the obvious "Happy Path" (e.g., login works, login fails).
+Strong prompt: Covers positive, negative, security, edge cases, and non-functional scenarios.
+
+2. Weak Prompts: Treats the app like a generic webpage. Ignores device behavior.
+Strong prompt: Incorporates mobile-specific constraints like OS matrices (iOS vs. Android), network handoffs, and interruptions.
+
+3.Weak prompts: Misses edge cases completely. Generates standard values only
+Strong promt: Explicitly isolates strict validation windows (e.g., exact 61st second execution, alphanumeric characters exclusion).
+
