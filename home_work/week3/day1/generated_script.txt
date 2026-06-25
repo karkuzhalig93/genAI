@@ -1,0 +1,86 @@
+Feature: Create Lead
+
+Scenario Outline: Successful creation of a lead with valid details
+  Given I open the create lead page
+  When I type "<companyName>" into the Company Name field
+  And I type "<firstName>" into the First Name field
+  And I type "<lastName>" into the Last Name field
+  And I select "<source>" from the Source dropdown
+  And I select "<marketingCampaign>" from the Marketing Campaign dropdown
+  And I click the Create Lead button
+  Then I should see the created lead details
+
+Examples:
+  | companyName | firstName | lastName | source      | marketingCampaign |
+  | Test Company | Ramesh    | Raman    | Cold Call   | Affiliate Sites  |
+  | Leaf Company | Suresh    | Kumar    | Conference  | Automobile       |
+
+
+
+  Feature: Create Lead
+
+Scenario Outline: Successful creation of a lead with valid details
+  Given I open the create lead page
+  When I type "<companyName>" into the Company Name field
+  And I type "<firstName>" into the First Name field
+  And I type "<lastName>" into the Last Name field
+  And I select "<source>" from the Source dropdown
+  And I select "<marketingCampaign>" from the Marketing Campaign dropdown
+  And I click the Create Lead button
+  Then I should see the created lead details
+
+Examples:
+  | companyName | firstName | lastName | source      | marketingCampaign |
+  | Test Company | Ramesh    | Raman    | Cold Call   | Affiliate Sites  |
+  | Leaf Company | Suresh    | Kumar    | Conference  | Automobile       |
+
+import { Given, When, Then, Before, After } from '@cucumber/cucumber';
+import { chromium } from 'playwright';
+import { expect } from '@playwright/test';
+
+let browser;
+let context;
+let page;
+
+Before(async function () {
+    browser = await chromium.launch({ headless: false });
+    context = await browser.newContext();
+    page = await context.newPage();
+    await page.setViewportSize({ width: 1280, height: 720 });
+});
+
+After(async function () {
+    await browser.close();
+});
+
+Given('I open the create lead page', async function () {
+    await page.goto('https://leaftaps.com/crmsfa/control/createLeadForm');
+});
+
+When('I type {string} into the Company Name field', async function (companyName) {
+    await page.locator('#createLeadForm_companyName').fill(companyName);
+});
+
+When('I type {string} into the First Name field', async function (firstName) {
+    await page.locator('#createLeadForm_firstName').fill(firstName);
+});
+
+When('I type {string} into the Last Name field', async function (lastName) {
+    await page.locator('#createLeadForm_lastName').fill(lastName);
+});
+
+When('I select {string} from the Source dropdown', async function (source) {
+    await page.locator('#createLeadForm_dataSourceId').selectOption({ label: source });
+});
+
+When('I select {string} from the Marketing Campaign dropdown', async function (marketingCampaign) {
+    await page.locator('#createLeadForm_marketingCampaignId').selectOption({ label: marketingCampaign });
+});
+
+When('I click the Create Lead button', async function () {
+    await page.locator('input[name="submitButton"]').click();
+});
+
+Then('I should see the created lead details', async function () {
+    await expect(page.locator('#viewLead_firstName_sp')).toBeVisible();
+});
