@@ -1,0 +1,34 @@
+Home Assignments
+1) With vibe coding implement the playwright/typescript or any other tool which you work say Selenium/Python
+
+
+Sample prompt for playwright/typescript integration:
+Ask mode :
+Read my entire workspace and confirm me what are the files will be impacted if I want to add playwright typescript same like  implemented for 
+Selenium Java
+
+
+
+
+
+Prompt for agent mode :
+
+Read the Entire workspace and understand how I implemented the selenium Java
+
+I want to add the playwright typescript
+
+1.Go to prompts.js and add new prompt templates for Playwright TypeScript 
+Take selenium Java as reference
+
+PLAYWRIGHT_TYPESCRIPT_PAGE_ONLY
+PLAYWRIGHT_TYPESCRIPT_WITH_CUCUMBER
+CUCUMBER_WITH_PLAYWRIGHT_TYPESCRIPT_STEPS
+
+2 .Go to chat.js
+
+Update getPromptKeys() method to handle Playwright/TypeScript combinations
+
+3.Go to  panel.html
+
+Add the logics to handle playwright typescript same like selenium Java
+
