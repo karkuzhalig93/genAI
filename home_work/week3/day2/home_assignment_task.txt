@@ -1,0 +1,12 @@
+Weekly Assignment(Home Assignment)
+
+Assignment for user-stories-testcase generator
+
+1)User story -tests generator --with vibe coding implement the 
+Jira integration to fetch user stories (both frontend and backend)
+2) Application is User story -tests generator, Add a button option to Generate Feature file and also a testcases for the user stories
+
+Assignment for AI Browser extension
+2) AI BrowserExtension -  With vibe coding generate the testscripts in the language selected (tool/language of your choice)
+Say--playwright/typescript
+(as of only page layer is generated)
