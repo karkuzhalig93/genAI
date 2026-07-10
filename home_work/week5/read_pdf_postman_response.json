@@ -1,0 +1,111 @@
+{
+    "session_id": "YOUR_SESSION_ID_HERE",
+    "outputs": [
+        {
+            "inputs": {
+                "input_value": "Fetch due amount and quantity"
+            },
+            "outputs": [
+                {
+                    "results": {
+                        "text": {
+                            "text_key": "text",
+                            "data": {
+                                "text": "Due Amount is : $5,000,000.00\nQuantity is: 10,000.00",
+                                "files": [],
+                                "sender": null,
+                                "sender_name": null,
+                                "session_id": "",
+                                "context_id": "",
+                                "timestamp": "2026-07-10 16:36:16 UTC",
+                                "flow_id": "fd9fb2ce-f654-4903-a7ae-30e4b62ffb79",
+                                "error": false,
+                                "edit": false,
+                                "properties": {
+                                    "text_color": null,
+                                    "background_color": null,
+                                    "edited": false,
+                                    "source": {
+                                        "id": null,
+                                        "display_name": null,
+                                        "source": null
+                                    },
+                                    "icon": null,
+                                    "allow_markdown": false,
+                                    "positive_feedback": null,
+                                    "state": "complete",
+                                    "targets": []
+                                },
+                                "category": "message",
+                                "content_blocks": [],
+                                "duration": null
+                            },
+                            "default_value": "",
+                            "text": "Due Amount is : $5,000,000.00\nQuantity is: 10,000.00",
+                            "sender": null,
+                            "sender_name": null,
+                            "files": [],
+                            "session_id": "",
+                            "context_id": "",
+                            "timestamp": "2026-07-10T16:36:16+00:00",
+                            "flow_id": "fd9fb2ce-f654-4903-a7ae-30e4b62ffb79",
+                            "error": false,
+                            "edit": false,
+                            "properties": {
+                                "text_color": null,
+                                "background_color": null,
+                                "edited": false,
+                                "source": {
+                                    "id": null,
+                                    "display_name": null,
+                                    "source": null
+                                },
+                                "icon": null,
+                                "allow_markdown": false,
+                                "positive_feedback": null,
+                                "state": "complete",
+                                "targets": []
+                            },
+                            "category": "message",
+                            "content_blocks": [],
+                            "duration": null
+                        }
+                    },
+                    "artifacts": {
+                        "text": {
+                            "repr": "Due Amount is : $5,000,000.00\nQuantity is: 10,000.00",
+                            "raw": "Due Amount is : $5,000,000.00\nQuantity is: 10,000.00",
+                            "type": "text"
+                        }
+                    },
+                    "outputs": {
+                        "text": {
+                            "message": "Due Amount is : $5,000,000.00\nQuantity is: 10,000.00",
+                            "type": "text"
+                        }
+                    },
+                    "logs": {
+                        "text": []
+                    },
+                    "messages": [
+                        {
+                            "message": "Due Amount is : $5,000,000.00\n\nQuantity is: 10,000.00",
+                            "sender": "Machine",
+                            "sender_name": "AI",
+                            "session_id": "",
+                            "stream_url": null,
+                            "component_id": "TextOutput-OKzON",
+                            "files": [],
+                            "type": "text"
+                        }
+                    ],
+                    "timedelta": null,
+                    "duration": null,
+                    "component_display_name": "Text Output",
+                    "component_id": "TextOutput-OKzON",
+                    "used_frozen_result": false
+                }
+            ]
+        }
+    ]
+}
