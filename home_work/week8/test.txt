@@ -1,0 +1,1 @@
+Analyse the project and create the readme.md file with flow, backend, frontend integration and just share me the impacted files and API. - claude prompt to know about an agent.
