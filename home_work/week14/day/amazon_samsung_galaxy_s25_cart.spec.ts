@@ -25,9 +25,10 @@ test.describe('Amazon search and add first Samsung Galaxy S25 result to cart', (
     const productPage = await productPagePromise;
     await expect(productPage.getByRole('heading', { name: /Samsung Galaxy S25 5G/i })).toBeVisible();
     await productPage.locator('#add-to-cart-button').click();
+    await productPage.waitForTimeout(10000);
 
     // 5. Open the cart and verify it contains the same first-result Samsung Galaxy S25 item.
     await expect(productPage).toHaveURL(/\/cart\//);
-    await expect(productPage.getByRole('link', { name: /Samsung Galaxy S25 5G \(Navy, 12GB RAM, 128GB Storage\)/i })).toBeVisible();
+    await expect(productPage.getByRole('link', { name: /Samsung Galaxy S25 5G \(Navy, 12GB RAM, 128GB Storage\)/i }).first()).toBeVisible();
   });
 });
